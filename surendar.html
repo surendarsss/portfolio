@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surendar S - AI/ML Engineer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4f46e5, #3730a3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 70%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            left: 80%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #4f46e5;
+            background: rgba(79, 70, 229, 0.1);
+        }
+
+        /* Hero Section - White Professional Theme */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 50%, #e2e8f0 100%);
+            color: #2d3748;
+        }
+
+        .hero-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero-photo {
+            flex: 0 0 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 6px solid #4f46e5;
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.3);
+            object-fit: cover;
+            transition: all 0.3s ease;
+            position: relative;
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            padding: 6px;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px rgba(79, 70, 229, 0.4);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .hero-greeting {
+            font-size: 1.2rem;
+            color: #4f46e5;
+            margin-bottom: 1rem;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2d3748, #4f46e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #764ba2;
+            font-weight: 600;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .hero .description {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 0 3rem 0;
+            color: #4a5568;
+            line-height: 1.7;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .expertise-tags {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.8s both;
+        }
+
+        .expertise-tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: #4f46e5;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .expertise-tag:hover {
+            background: rgba(79, 70, 229, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: slideInUp 1s ease-out 1s both;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 35px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #4f46e5;
+            border: 2px solid #4f46e5;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2d3748, #4f46e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #4a5568;
+            font-size: 1.1rem;
+            margin-top: -2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            border-color: rgba(79, 70, 229, 0.5);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2);
+        }
+
+        .skill-category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            color: #4f46e5;
+        }
+
+        .skill-category h3 {
+            color: #2d3748;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: #2d3748;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(79, 70, 229, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Projects Section */
+        .project-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid rgba(79, 70, 229, 0.3);
+            background: transparent;
+            color: #4f46e5;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(79, 70, 229, 0.3);
+            border-color: rgba(79, 70, 229, 0.5);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            color: white;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .project-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.4rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-badge.startup {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .project-badge.personal {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .project-badge.hackathon {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .project-link {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-link:hover {
+            color: #fbbf24;
+            transform: translateX(5px);
+        }
+
+        .project-link i {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover i {
+            opacity: 1;
+            transform: translateX(2px);
+        }
+
+        .project-subtitle {
+            opacity: 0.9;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-description {
+            margin-bottom: 1.5rem;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: #4f46e5;
+            padding: 0.4rem 1rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: rgba(79, 70, 229, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Tech Stack Section Styles */
+        .tech-stack-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .tech-stack-title {
+            color: #2d3748;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tech-category {
+            background: rgba(102, 126, 234, 0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .tech-category h5 {
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tech-category .project-tech {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .tech-category .tech-tag {
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+        }
+
+        .experience-item {
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            position: relative;
+            width: 45%;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-item:hover {
+            border-color: rgba(79, 70, 229, 0.5);
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.2);
+        }
+
+        .experience-item:nth-child(odd) {
+            margin-left: 0;
+        }
+
+        .experience-item:nth-child(even) {
+            margin-left: 55%;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            border-radius: 50%;
+            top: 2.5rem;
+            border: 3px solid #ffffff;
+        }
+
+        .experience-item:nth-child(odd)::before {
+            right: -65px;
+        }
+
+        .experience-item:nth-child(even)::before {
+            left: -65px;
+        }
+
+        .experience-title {
+            color: #4f46e5;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .experience-company {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .experience-date {
+            color: #764ba2;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .experience-description {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Certifications Section - New Design */
+        .certifications-list {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .certifications-list::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            border-radius: 2px;
+        }
+
+        .certification-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-left: 120px;
+        }
+
+        .certification-item::before {
+            content: '';
+            position: absolute;
+            left: 44px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+            z-index: 2;
+        }
+
+        .cert-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .certification-item:hover .cert-number {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(79, 70, 229, 0.4);
+        }
+
+        .cert-content {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem;
+            flex: 1;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+        }
+
+        .certification-item:hover .cert-content {
+            transform: translateX(10px);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2);
+            border-color: rgba(79, 70, 229, 0.5);
+        }
+
+        .cert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .cert-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin: 0;
+        }
+
+        .cert-link {
+            color: #2d3748;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cert-link:hover {
+            color: #4f46e5;
+            transform: translateX(5px);
+        }
+
+        .cert-link i {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .cert-link:hover i {
+            opacity: 1;
+            transform: translateX(2px);
+        }
+
+        .cert-status {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cert-status.completed {
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .cert-status.in-progress {
+            background: rgba(251, 191, 36, 0.1);
+            color: #d97706;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .cert-issuer {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-date {
+            color: #764ba2;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .cert-description {
+            color: #4a5568;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Responsive design for certifications */
+        @media (max-width: 768px) {
+            .certifications-list::before {
+                left: 30px;
+            }
+
+            .certification-item {
+                padding-left: 80px;
+            }
+
+            .certification-item::before {
+                left: 24px;
+            }
+
+            .cert-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.2rem;
+            }
+
+            .cert-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .cert-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Contact Section - Attractive Color Combination */
+        .contact-section {
+            background: linear-gradient(135deg, #4f46e5 0%, #3730a3 50%, #7c3aed 100%);
+            color: white;
+        }
+
+        .contact-section .section-title {
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #4f46e5, #3730a3, #7c3aed);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #4f46e5, #3730a3, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-title {
+            color: #2d3748;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .contact-details {
+            color: #4a5568;
+        }
+
+        .contact-link {
+            color: #4f46e5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            color: #3730a3;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: #a0aec0;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-photo {
+                flex: 0 0 auto;
+            }
+
+            .profile-photo {
+                width: 220px;
+                height: 220px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .expertise-tags {
+                justify-content: center;
+            }
+
+            .experience-timeline::before {
+                left: 30px;
+            }
+
+            .experience-item {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+
+            .experience-item::before {
+                left: -45px !important;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">SS</div>
+            <ul class="nav-links">
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
+                <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+                <li><a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="assets/Surendar_S_Resume.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Resume</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="hero-greeting">Hi There! 👋</p>
+                    <h1>SURENDAR S</h1>
+                    <p class="subtitle">AI/ML Engineer & Data Science Enthusiast</p>
+                    <div class="expertise-tags">
+                        <span class="expertise-tag">AI/ML Engineer</span>
+                        <span class="expertise-tag">Data Science Enthusiast</span>
+                        <span class="expertise-tag">Python Developer</span>
+                        <span class="expertise-tag">Computer Vision</span>
+                    </div>
+                    <p class="description">
+                        Passionate AI/ML Engineer specializing in cutting-edge artificial intelligence solutions, machine learning algorithms, 
+                        and data-driven insights. Experienced in building intelligent systems with Python, computer vision, and edge AI technologies.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> View My Projects
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-paper-plane"></i> Get In Touch
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-photo">
+                    <div class="profile-photo">
+                        <img src="surendar.jpg" alt="Surendar S" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#3730a3);display:flex;align-items:center;justify-content:center;color:white;font-size:3rem;font-weight:bold;\'>SS</div>'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Technical Expertise</h2>
+            <p class="section-subtitle">Cutting-edge technologies and frameworks I work with</p>
+            <div class="skills-grid fade-in">
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <i class="fas fa-code skill-icon"></i>
+                        <h3>Programming Languages</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <i class="fas fa-brain skill-icon"></i>
+                        <h3>AI & Machine Learning</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">Computer Vision</span>
+                        <span class="skill-tag">Edge AI</span>
+                        <span class="skill-tag">Neural Networks</span>
+                        <span class="skill-tag">NLP</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <i class="fas fa-chart-line skill-icon"></i>
+                        <h3>Data Science & Analytics</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Seaborn</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Tableau</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <i class="fas fa-microchip skill-icon"></i>
+                        <h3>IoT & Embedded Systems</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Raspberry Pi</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">Sensors</span>
+                        <span class="skill-tag">RTOS</span>
+                        <span class="skill-tag">Edge Computing</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-header">
+                        <i class="fas fa-tools skill-icon"></i>
+                        <h3>Tools & Frameworks</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Supabase</span>
+                        <span class="skill-tag">Jupyter</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">Innovative AI/ML solutions and cutting-edge applications</p>
+            
+            <!-- Project Categories -->
+            <div class="project-categories fade-in">
+                <button class="category-btn active" data-category="all">All Projects</button>
+                <button class="category-btn" data-category="startup">Startup Projects</button>
+                <button class="category-btn" data-category="personal">Personal Projects</button>
+                <button class="category-btn" data-category="hackathon">Hackathon Projects</button>
+            </div>
+
+            <div class="projects-grid fade-in">
+                <!-- Startup Projects -->
+                <div class="project-card startup-project" data-category="startup">
+                    <div class="project-header">
+                        <div class="project-badge startup">Startup</div>
+                        <h3 class="project-title">
+                            <a href="https://github.com/surendarsss/maternova" target="_blank" class="project-link">
+                                MaterNova - Smart Maternal Health Monitoring
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </h3>
+                        <p class="project-subtitle">Niral Thiruvizha Hackathon 2025 | Healthcare IoT</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Revolutionary wearable IoT system for maternal and infant health monitoring featuring real-time vital tracking. 
+                            Implemented advanced Edge AI models achieving 95% accuracy for health risk prediction with automated emergency response systems.
+                        </p>
+                        <div class="tech-stack-section">
+                            <h4 class="tech-stack-title">Full Stack Tech Stack:</h4>
+                            <div class="tech-categories">
+                                <div class="tech-category">
+                                    <h5>Frontend & UI/UX</h5>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">React.js</span>
+                                        <span class="tech-tag">TypeScript</span>
+                                        <span class="tech-tag">Material-UI</span>
+                                        <span class="tech-tag">Chart.js</span>
+                                        <span class="tech-tag">Responsive Design</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <h5>Backend & API</h5>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Node.js</span>
+                                        <span class="tech-tag">Express.js</span>
+                                        <span class="tech-tag">MongoDB</span>
+                                        <span class="tech-tag">RESTful APIs</span>
+                                        <span class="tech-tag">WebSocket</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <h5>AI & Machine Learning</h5>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">TensorFlow</span>
+                                        <span class="tech-tag">Edge AI</span>
+                                        <span class="tech-tag">Python</span>
+                                        <span class="tech-tag">Scikit-learn</span>
+                                        <span class="tech-tag">Real-time ML</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <h5>IoT & Hardware</h5>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Raspberry Pi</span>
+                                        <span class="tech-tag">Sensors</span>
+                                        <span class="tech-tag">MQTT</span>
+                                        <span class="tech-tag">Bluetooth LE</span>
+                                        <span class="tech-tag">Cloud IoT</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <h5>DevOps & Cloud</h5>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">AWS</span>
+                                        <span class="tech-tag">Docker</span>
+                                        <span class="tech-tag">CI/CD</span>
+                                        <span class="tech-tag">Kubernetes</span>
+                                        <span class="tech-tag">Monitoring</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card hackathon-project" data-category="hackathon">
+                    <div class="project-header">
+                        <div class="project-badge hackathon">Hackathon</div>
+                        <h3 class="project-title">
+                            <a href="https://github.com/surendarsss/fall-prevention-ai" target="_blank" class="project-link">
+                                AI-Based Fall Prevention System
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </h3>
+                        <p class="project-subtitle">Smart India Hackathon National Finalist 2024 | Elderly Care</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Intelligent wearable device powered by Edge AI for real-time fall detection from motion sensor data. 
+                            Features predictive analytics and automatic airbag deployment system for elderly safety protection.
+                        </p>
+                        <div class="tech-stack-section">
+                            <h4 class="tech-stack-title">Complete Tech Stack:</h4>
+                            <div class="tech-categories">
+                                <div class="tech-category">
+                                    <h5>AI & Computer Vision</h5>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">OpenCV</span>
+                                        <span class="tech-tag">TensorFlow Lite</span>
+                                        <span class="tech-tag">Edge AI</span>
+                                        <span class="tech-tag">Motion Detection</span>
+                                        <span class="tech-tag">Predictive Analytics</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <h5>Hardware & IoT</h5>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Raspberry Pi</span>
+                                        <span class="tech-tag">IMU Sensors</span>
+                                        <span class="tech-tag">GPS Module</span>
+                                        <span class="tech-tag">Bluetooth</span>
+                                        <span class="tech-tag">Emergency System</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <h5>Mobile App</h5>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">React Native</span>
+                                        <span class="tech-tag">Firebase</span>
+                                        <span class="tech-tag">Push Notifications</span>
+                                        <span class="tech-tag">Real-time Updates</span>
+                                        <span class="tech-tag">Emergency Contacts</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <h5>Backend & Analytics</h5>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Python Flask</span>
+                                        <span class="tech-tag">PostgreSQL</span>
+                                        <span class="tech-tag">Redis</span>
+                                        <span class="tech-tag">Data Analytics</span>
+                                        <span class="tech-tag">Alert System</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Projects -->
+                <div class="project-card personal-project" data-category="personal">
+                    <div class="project-header">
+                        <div class="project-badge personal">Personal</div>
+                        <h3 class="project-title">
+                            <a href="https://github.com/surendarsss/smart-lock-system" target="_blank" class="project-link">
+                                Smart Lock System with Face Recognition
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </h3>
+                        <p class="project-subtitle">IoT Security Project 2024 | Home Automation</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Advanced Raspberry Pi-based smart lock system utilizing OpenCV for secure facial recognition authentication. 
+                            Deployed lightweight Edge AI model with Flask dashboard for remote monitoring and user management.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Raspberry Pi</span>
+                            <span class="tech-tag">Face Recognition</span>
+                            <span class="tech-tag">IoT Security</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">SQLite</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card personal-project" data-category="personal">
+                    <div class="project-header">
+                        <div class="project-badge personal">Personal</div>
+                        <h3 class="project-title">
+                            <a href="https://github.com/surendarsss/ai-chatbot" target="_blank" class="project-link">
+                                AI Chatbot with Natural Language Processing
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </h3>
+                        <p class="project-subtitle">NLP Project 2024 | Conversational AI</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Intelligent chatbot powered by advanced NLP techniques and machine learning algorithms. 
+                            Features sentiment analysis, intent recognition, and context-aware responses.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">NLTK</span>
+                            <span class="tech-tag">spaCy</span>
+                            <span class="tech-tag">Transformers</span>
+                            <span class="tech-tag">Flask API</span>
+                            <span class="tech-tag">React Frontend</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card personal-project" data-category="personal">
+                    <div class="project-header">
+                        <div class="project-badge personal">Personal</div>
+                        <h3 class="project-title">
+                            <a href="https://github.com/surendarsss/data-visualization-dashboard" target="_blank" class="project-link">
+                                Data Visualization Dashboard
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </h3>
+                        <p class="project-subtitle">Data Science Project 2024 | Analytics Platform</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Interactive data visualization dashboard for real-time analytics and insights. 
+                            Features multiple chart types, filtering capabilities, and responsive design.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">Chart.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Experience & Training</h2>
+            <p class="section-subtitle">Professional journey and continuous learning</p>
+            <div class="experience-timeline fade-in">
+                <div class="experience-item">
+                    <h3 class="experience-title">Advanced Electronics Manufacturing</h3>
+                    <div class="experience-company">IIT Madras</div>
+                    <div class="experience-date">February 2025</div>
+                    <p class="experience-description">Gained comprehensive experience in advanced electronics and power systems manufacturing. Applied embedded system concepts to build and test innovative prototype devices with industry-standard practices.</p>
+                </div>
+                <div class="experience-item">
+                    <h3 class="experience-title">Embedded Systems & IoT</h3>
+                    <div class="experience-company">NSIC Technical Centre, Chennai</div>
+                    <div class="experience-date">2024</div>
+                    <p class="experience-description">Integrated cutting-edge IoT sensors with hardware for real-time data processing and monitoring. Developed and tested embedded system modules for smart device applications with focus on efficiency and reliability.</p>
+                </div>
+                <div class="experience-item">
+                    <h3 class="experience-title">IBM Machine Learning Professional</h3>
+                    <div class="experience-company">IBM - Coursera</div>
+                    <div class="experience-date">In Progress - July 2025</div>
+                    <p class="experience-description">Comprehensive specialization program covering advanced machine learning techniques, model deployment, and real-world applications. Focus on industry best practices and cutting-edge ML methodologies.</p>
+                </div>
+                <div class="experience-item">
+                    <h3 class="experience-title">Artificial Intelligence Training</h3>
+                    <div class="experience-company">Naan Mudhalvan</div>
+                    <div class="experience-date">2023</div>
+                    <p class="experience-description">Completed intensive AI training program focusing on practical applications and industry-relevant projects. Gained expertise in AI fundamentals and hands-on implementation experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="section">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <p class="section-subtitle">Professional certifications and achievements</p>
+            <div class="certifications-list fade-in">
+                <div class="certification-item">
+                    <div class="cert-number">01</div>
+                    <div class="cert-content">
+                        <div class="cert-header">
+                            <h3 class="cert-title">
+                                <a href="https://www.coursera.org/professional-certificates/ibm-machine-learning" target="_blank" class="cert-link">
+                                    IBM Machine Learning Professional
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </h3>
+                            <span class="cert-status in-progress">In Progress</span>
+                        </div>
+                        <p class="cert-issuer">IBM - Coursera</p>
+                        <p class="cert-date">Expected: July 2025</p>
+                        <p class="cert-description">Comprehensive specialization program covering advanced machine learning techniques, model deployment, and real-world applications.</p>
+                    </div>
+                </div>
+
+                <div class="certification-item">
+                    <div class="cert-number">02</div>
+                    <div class="cert-content">
+                        <div class="cert-header">
+                            <h3 class="cert-title">
+                                <a href="#" class="cert-link">
+                                    Artificial Intelligence Training
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </h3>
+                            <span class="cert-status completed">Completed</span>
+                        </div>
+                        <p class="cert-issuer">Naan Mudhalvan</p>
+                        <p class="cert-date">2023</p>
+                        <p class="cert-description">Intensive AI training program focusing on practical applications and industry-relevant projects with hands-on implementation.</p>
+                    </div>
+                </div>
+
+                <div class="certification-item">
+                    <div class="cert-number">03</div>
+                    <div class="cert-content">
+                        <div class="cert-header">
+                            <h3 class="cert-title">
+                                <a href="#" class="cert-link">
+                                    Embedded Systems & IoT
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </h3>
+                            <span class="cert-status completed">Completed</span>
+                        </div>
+                        <p class="cert-issuer">NSIC Technical Centre, Chennai</p>
+                        <p class="cert-date">2024</p>
+                        <p class="cert-description">Advanced training in IoT sensors integration, real-time data processing, and embedded system modules for smart devices.</p>
+                    </div>
+                </div>
+
+                <div class="certification-item">
+                    <div class="cert-number">04</div>
+                    <div class="cert-content">
+                        <div class="cert-header">
+                            <h3 class="cert-title">
+                                <a href="#" class="cert-link">
+                                    Advanced Electronics Manufacturing
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </h3>
+                            <span class="cert-status completed">Completed</span>
+                        </div>
+                        <p class="cert-issuer">IIT Madras</p>
+                        <p class="cert-date">February 2025</p>
+                        <p class="cert-description">Comprehensive experience in advanced electronics and power systems manufacturing with industry-standard practices.</p>
+                    </div>
+                </div>
+
+                <div class="certification-item">
+                    <div class="cert-number">05</div>
+                    <div class="cert-content">
+                        <div class="cert-header">
+                            <h3 class="cert-title">
+                                <a href="https://www.coursera.org/learn/python" target="_blank" class="cert-link">
+                                    Python Programming Certification
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </h3>
+                            <span class="cert-status completed">Completed</span>
+                        </div>
+                        <p class="cert-issuer">Coursera</p>
+                        <p class="cert-date">2023</p>
+                        <p class="cert-description">Advanced Python programming with focus on data science, machine learning libraries, and automation techniques.</p>
+                    </div>
+                </div>
+
+                <div class="certification-item">
+                    <div class="cert-number">06</div>
+                    <div class="cert-content">
+                        <div class="cert-header">
+                            <h3 class="cert-title">
+                                <a href="https://opencv.org/courses/" target="_blank" class="cert-link">
+                                    Computer Vision Fundamentals
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </h3>
+                            <span class="cert-status completed">Completed</span>
+                        </div>
+                        <p class="cert-issuer">OpenCV University</p>
+                        <p class="cert-date">2024</p>
+                        <p class="cert-description">Comprehensive training in computer vision algorithms, OpenCV implementation, and real-world applications.</p>
+                    </div>
+                </div>
+
+                <div class="certification-item">
+                    <div class="cert-number">07</div>
+                    <div class="cert-content">
+                        <div class="cert-header">
+                            <h3 class="cert-title">
+                                <a href="https://www.datacamp.com/courses/intro-to-python-for-data-science" target="_blank" class="cert-link">
+                                    Data Science Essentials
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </h3>
+                            <span class="cert-status completed">Completed</span>
+                        </div>
+                        <p class="cert-issuer">DataCamp</p>
+                        <p class="cert-date">2023</p>
+                        <p class="cert-description">Core data science concepts including data manipulation, statistical analysis, and visualization techniques.</p>
+                    </div>
+                </div>
+
+                <div class="certification-item">
+                    <div class="cert-number">08</div>
+                    <div class="cert-content">
+                        <div class="cert-header">
+                            <h3 class="cert-title">
+                                <a href="https://www.raspberrypi.org/education/" target="_blank" class="cert-link">
+                                    IoT Development Workshop
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </h3>
+                            <span class="cert-status completed">Completed</span>
+                        </div>
+                        <p class="cert-issuer">Raspberry Pi Foundation</p>
+                        <p class="cert-date">2024</p>
+                        <p class="cert-description">Hands-on workshop on IoT development using Raspberry Pi, sensors, and cloud integration.</p>
+                    </div>
+                </div>
+
+                <div class="certification-item">
+                    <div class="cert-number">09</div>
+                    <div class="cert-content">
+                        <div class="cert-header">
+                            <h3 class="cert-title">
+                                <a href="https://online.stanford.edu/courses/cs229-machine-learning" target="_blank" class="cert-link">
+                                    Machine Learning Basics
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </h3>
+                            <span class="cert-status completed">Completed</span>
+                        </div>
+                        <p class="cert-issuer">Stanford Online</p>
+                        <p class="cert-date">2023</p>
+                        <p class="cert-description">Fundamental machine learning algorithms, supervised and unsupervised learning techniques.</p>
+                    </div>
+                </div>
+
+                <div class="certification-item">
+                    <div class="cert-number">10</div>
+                    <div class="cert-content">
+                        <div class="cert-header">
+                            <h3 class="cert-title">
+                                <a href="https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/overview.html" target="_blank" class="cert-link">
+                                    Edge Computing & AI
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </h3>
+                            <span class="cert-status in-progress">In Progress</span>
+                        </div>
+                        <p class="cert-issuer">Intel AI Academy</p>
+                        <p class="cert-date">Expected: June 2025</p>
+                        <p class="cert-description">Advanced course on deploying AI models on edge devices for real-time processing and inference.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Let's collaborate on innovative AI/ML projects</p>
+            <div class="contact-info fade-in">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="contact-title">Email</h3>
+                    <p class="contact-details">
+                        <a href="mailto:surendarpc936@gmail.com" class="contact-link">surendarpc936@gmail.com</a>
+                    </p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 class="contact-title">Phone</h3>
+                    <p class="contact-details">
+                        <a href="tel:+917010861982" class="contact-link">+91 7010861982</a>
+                    </p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3 class="contact-title">LinkedIn</h3>
+                    <p class="contact-details">
+                        <a href="https://linkedin.com/in/surendarsss" class="contact-link" target="_blank">linkedin.com/in/surendarsss</a>
+                    </p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="contact-title">Location</h3>
+                    <p class="contact-details">Chennai, Tamil Nadu, India</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3 class="contact-title">Resume</h3>
+                    <p class="contact-details">
+                        <a href="assets/Surendar_S_Resume.pdf" class="contact-link" target="_blank" download>Download Resume</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Surendar S. All rights reserved. | AI/ML Engineer & Data Science Enthusiast</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(79, 70, 229, 0.3)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Add staggered animation for child elements
+                    const children = entry.target.querySelectorAll('.skill-category, .project-card, .experience-item, .contact-card');
+                    children.forEach((child, index) => {
+                        setTimeout(() => {
+                            child.style.opacity = '1';
+                            child.style.transform = 'translateY(0)';
+                        }, index * 150);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize all cards with fade-in state
+        document.querySelectorAll('.skill-category, .project-card, .experience-item, .contact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+        });
+
+        // Particle animation for background
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = 'rgba(102, 126, 234, 0.6)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '-1';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            
+            document.body.appendChild(particle);
+            
+            const animationDuration = Math.random() * 3000 + 2000;
+            const animationDelay = Math.random() * 1000;
+            
+            particle.animate([
+                {
+                    transform: 'translateY(0px) rotate(0deg)',
+                    opacity: 0
+                },
+                {
+                    transform: 'translateY(-100px) rotate(180deg)',
+                    opacity: 1
+                },
+                {
+                    transform: `translateY(-${window.innerHeight + 100}px) rotate(360deg)`,
+                    opacity: 0
+                }
+            ], {
+                duration: animationDuration,
+                delay: animationDelay,
+                easing: 'linear'
+            }).onfinish = () => {
+                particle.remove();
+            };
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 300);
+
+        // Enhanced typing effect for hero greeting
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect after page load
+        window.addEventListener('load', () => {
+            const greeting = document.querySelector('.hero-greeting');
+            setTimeout(() => {
+                typeWriter(greeting, 'Hi There! 👋', 150);
+            }, 1000);
+        });
+
+        // Add hover effects for buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Dynamic nav link highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.style.color = '#2d3748';
+                link.style.background = 'transparent';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = '#4f46e5';
+                    link.style.background = 'rgba(79, 70, 229, 0.1)';
+                }
+            });
+        });
+
+        // Project filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Update active button
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
