@@ -2400,6 +2400,360 @@ section[id],
         background: rgba(102, 126, 234, 0.2) !important;
     }
 }
+
+         // Single-page navigation system
+        let currentPage = 'home'; // Default page
+
+        // Page switching functionality for data-page attributes
+        document.querySelectorAll('a[data-page]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetPage = this.getAttribute('data-page');
+                showPage(targetPage);
+            });
+        });
+
+        // Also handle traditional href="#page" links (for CTA buttons)
+        document.querySelectorAll('a[href^="#"]:not([data-page])').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetPage = this.getAttribute('href').substring(1);
+                showPage(targetPage);
+            });
+        });
+
+        function showPage(pageId) {
+            // Hide all sections/pages
+            document.querySelectorAll('section[id], .page').forEach(section => {
+                section.style.display = 'none';
+                section.classList.remove('active');
+            });
+            
+            // Show target page with fade-in animation
+            const targetSection = document.querySelector(`#${pageId}`) || document.querySelector(`[data-page="${pageId}"]`);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+                targetSection.style.opacity = '0';
+                targetSection.style.transform = 'translateY(20px)';
+                
+                // Trigger animation
+                setTimeout(() => {
+                    targetSection.style.transition = 'all 0.5s ease-out';
+                    targetSection.style.opacity = '1';
+                    targetSection.style.transform = 'translateY(0)';
+                    targetSection.classList.add('active');
+                }, 50);
+                
+                currentPage = pageId;
+                updateNavigation(pageId);
+                
+                // Trigger page-specific animations
+                triggerPageAnimations(targetSection);
+            }
+        }
+
+        // Update navigation highlighting
+        function updateNavigation(activePageId) {
+            const navLinks = document.querySelectorAll('.nav-links a[data-page], .nav-links a.nav-link');
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                link.style.color = '#2d3748';
+                link.style.background = 'transparent';
+                link.style.borderRadius = '8px';
+                link.style.padding = '8px 16px';
+                link.style.transition = 'all 0.3s ease';
+                
+                const dataPage = link.getAttribute('data-page');
+                const href = link.getAttribute('href');
+                
+                if (dataPage === activePageId || href === `#${activePageId}`) {
+                    link.classList.add('active');
+                    link.style.color = '#4f46e5';
+                    link.style.background = 'rgba(79, 70, 229, 0.1)';
+                    link.style.fontWeight = '600';
+                }
+            });
+        }
+
+        // Trigger animations for page content
+        function triggerPageAnimations(pageElement) {
+            // Reset and animate cards
+            const animatedElements = pageElement.querySelectorAll('.skill-category, .project-card, .experience-item, .contact-card, .fade-in');
+            
+            animatedElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+                
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 150 + 200);
+            });
+        }
+
+        // Enhanced header effects (removed scroll dependency)
+        function updateHeader() {
+            const header = document.querySelector('header');
+            if (header) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(79, 70, 229, 0.3)';
+                header.style.transition = 'all 0.3s ease';
+            }
+        }
+
+        // Particle animation for background (enhanced)
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = `rgba(${Math.random() > 0.5 ? '102, 126, 234' : '79, 70, 229'}, 0.6)`;
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '-1';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            
+            document.body.appendChild(particle);
+            
+            const animationDuration = Math.random() * 3000 + 2000;
+            const animationDelay = Math.random() * 1000;
+            
+            particle.animate([
+                {
+                    transform: 'translateY(0px) rotate(0deg)',
+                    opacity: 0
+                },
+                {
+                    transform: 'translateY(-100px) rotate(180deg)',
+                    opacity: 1
+                },
+                {
+                    transform: `translateY(-${window.innerHeight + 100}px) rotate(360deg)`,
+                    opacity: 0
+                }
+            ], {
+                duration: animationDuration,
+                delay: animationDelay,
+                easing: 'linear'
+            }).onfinish = () => {
+                particle.remove();
+            };
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 300);
+
+        // Enhanced typing effect for hero greeting
+        function typeWriter(element, text, speed = 100) {
+            if (!element) return;
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Page transition effects
+        function addPageTransitionEffects() {
+            const style = document.createElement('style');
+            style.textContent = `
+                .page-transition {
+                    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                
+                .fade-enter {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                
+                .fade-enter-active {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                
+                .slide-enter {
+                    transform: translateX(100%);
+                }
+                
+                .slide-enter-active {
+                    transform: translateX(0);
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Enhanced button hover effects
+        function addButtonEffects() {
+            document.querySelectorAll('.btn, button').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.05)';
+                    this.style.boxShadow = '0 10px 25px rgba(79, 70, 229, 0.3)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        }
+
+        // Project filtering functionality (enhanced for single-page)
+        function initProjectFiltering() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Update active button with animation
+                    categoryBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.style.transform = 'scale(1)';
+                    });
+                    this.classList.add('active');
+                    this.style.transform = 'scale(1.05)';
+                    
+                    // Filter projects with staggered animation
+                    projectCards.forEach((card, index) => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.classList.remove('hidden');
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, index * 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.classList.add('hidden');
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        }
+
+        // Mobile menu toggle
+        function initMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    mobileMenuBtn.classList.toggle('active');
+                    
+                    // Update button icon
+                    if (navLinks.classList.contains('active')) {
+                        mobileMenuBtn.innerHTML = '✕';
+                    } else {
+                        mobileMenuBtn.innerHTML = '☰';
+                    }
+                });
+                
+                // Close menu when clicking on a navigation link
+                document.querySelectorAll('.nav-links a[data-page]').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '☰';
+                    });
+                });
+            }
+        }
+
+        // Browser history management
+        function initHistoryManagement() {
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', (e) => {
+                const pageId = e.state ? e.state.page : getPageFromURL();
+                showPage(pageId);
+            });
+            
+            // Get page from URL hash
+            function getPageFromURL() {
+                const hash = window.location.hash.substring(1);
+                return hash || 'home';
+            }
+            
+            // Update URL when changing pages
+            function updateURL(pageId) {
+                const newURL = `${window.location.pathname}#${pageId}`;
+                history.pushState({ page: pageId }, '', newURL);
+            }
+            
+            // Override showPage to include history management
+            const originalShowPage = showPage;
+            showPage = function(pageId) {
+                originalShowPage(pageId);
+                updateURL(pageId);
+            };
+            
+            return getPageFromURL;
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize page system
+            addPageTransitionEffects();
+            addButtonEffects();
+            initProjectFiltering();
+            initMobileMenu();
+            const getPageFromURL = initHistoryManagement();
+            updateHeader();
+            
+            // Show initial page based on URL hash or default to home
+            const initialPage = getPageFromURL();
+            showPage(initialPage);
+            
+            // Initialize typing effect for hero section
+            setTimeout(() => {
+                const greeting = document.querySelector('.hero-greeting');
+                if (greeting) {
+                    typeWriter(greeting, 'Hi There! 👋', 150);
+                }
+            }, 1000);
+            
+            // Initialize all interactive elements
+            setTimeout(() => {
+                const allCards = document.querySelectorAll('.skill-category, .project-card, .experience-item, .contact-card');
+                allCards.forEach(el => {
+                    el.style.transition = 'all 0.6s ease-out';
+                });
+            }, 100);
+        });
+
+        // Utility function for smooth page switching
+        function switchToPage(pageId, animationType = 'fade') {
+            showPage(pageId);
+            
+            // Add specific animation based on type
+            const targetSection = document.querySelector(`#${pageId}`);
+            if (targetSection) {
+                targetSection.classList.add(`${animationType}-enter`);
+                setTimeout(() => {
+                    targetSection.classList.add(`${animationType}-enter-active`);
+                }, 50);
+            }
+        }
+
+        // Export functions for external use
+        window.portfolioNav = {
+            showPage,
+            switchToPage,
+            updateNavigation,
+            currentPage: () => currentPage
+        };
     </style>
 </head>
 <body>
@@ -3414,3 +3768,4 @@ section[id],
 </script>
 </body>
 </html>
+
