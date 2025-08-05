@@ -2400,360 +2400,546 @@ section[id],
         background: rgba(102, 126, 234, 0.2) !important;
     }
 }
+/* ==========================================================================
+   CRITICAL MOBILE FIXES - Navigation Overlap & Contact Page
+   ========================================================================== */
 
-         // Single-page navigation system
-        let currentPage = 'home'; // Default page
+/* =================================
+   FIX 1: HEADER & NAVIGATION OVERLAP ISSUES
+   ================================= */
 
-        // Page switching functionality for data-page attributes
-        document.querySelectorAll('a[data-page]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetPage = this.getAttribute('data-page');
-                showPage(targetPage);
-            });
-        });
+/* Enhanced header for mobile */
+@media (max-width: 767px) {
+    header {
+        background: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(25px) !important;
+        padding: 0.8rem 0 !important;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
+        border-bottom: 1px solid rgba(79, 70, 229, 0.15) !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        z-index: 9999 !important; /* Higher z-index */
+        height: auto !important;
+        min-height: 70px !important;
+    }
+    
+    /* Ensure nav container doesn't overflow */
+    nav {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 16px !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    .logo {
+        font-size: 1.4rem !important;
+        font-weight: 700 !important;
+        flex-shrink: 0 !important;
+        z-index: 10000 !important;
+    }
+    
+    /* Mobile menu button */
+    .mobile-menu-btn {
+        display: block !important;
+        background: none !important;
+        border: none !important;
+        font-size: 1.3rem !important;
+        cursor: pointer !important;
+        color: #4f46e5 !important;
+        padding: 8px !important;
+        border-radius: 6px !important;
+        z-index: 10000 !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* Hide desktop navigation */
+    .nav-links {
+        display: none !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(25px) !important;
+        flex-direction: column !important;
+        padding: 1rem 16px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+        border-radius: 0 0 15px 15px !important;
+        border-top: 1px solid rgba(79, 70, 229, 0.2) !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(-10px) !important;
+        transition: all 0.3s ease !important;
+        z-index: 9998 !important;
+        max-height: calc(100vh - 80px) !important;
+        overflow-y: auto !important;
+    }
+    
+    .nav-links.active {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+    }
+    
+    .nav-links li {
+        margin: 0.4rem 0 !important;
+        width: 100% !important;
+    }
+    
+    .nav-links a {
+        padding: 12px 16px !important;
+        border-radius: 8px !important;
+        font-size: 1rem !important;
+        justify-content: center !important;
+        width: 100% !important;
+        text-align: center !important;
+        display: block !important;
+    }
+}
 
-        // Also handle traditional href="#page" links (for CTA buttons)
-        document.querySelectorAll('a[href^="#"]:not([data-page])').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetPage = this.getAttribute('href').substring(1);
-                showPage(targetPage);
-            });
-        });
+/* =================================
+   FIX 2: CONTENT POSITIONING - PREVENT OVERLAP
+   ================================= */
 
-        function showPage(pageId) {
-            // Hide all sections/pages
-            document.querySelectorAll('section[id], .page').forEach(section => {
-                section.style.display = 'none';
-                section.classList.remove('active');
-            });
-            
-            // Show target page with fade-in animation
-            const targetSection = document.querySelector(`#${pageId}`) || document.querySelector(`[data-page="${pageId}"]`);
-            if (targetSection) {
-                targetSection.style.display = 'block';
-                targetSection.style.opacity = '0';
-                targetSection.style.transform = 'translateY(20px)';
-                
-                // Trigger animation
-                setTimeout(() => {
-                    targetSection.style.transition = 'all 0.5s ease-out';
-                    targetSection.style.opacity = '1';
-                    targetSection.style.transform = 'translateY(0)';
-                    targetSection.classList.add('active');
-                }, 50);
-                
-                currentPage = pageId;
-                updateNavigation(pageId);
-                
-                // Trigger page-specific animations
-                triggerPageAnimations(targetSection);
-            }
+@media (max-width: 767px) {
+    /* ALL SECTIONS - Add proper top spacing */
+    section[id] {
+        padding-top: 90px !important; /* Space for fixed header */
+        min-height: calc(100vh - 70px) !important;
+        box-sizing: border-box !important;
+    }
+    
+    .section {
+        padding: 90px 0 60px 0 !important; /* Top padding for header clearance */
+    }
+    
+    /* HERO SECTION - Critical fixes */
+    .hero {
+        padding: 90px 0 60px 0 !important; /* Proper header clearance */
+        min-height: calc(100vh - 70px) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+        overflow: visible !important;
+    }
+    
+    .hero-content {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 1.5rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 16px !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    .hero-text {
+        text-align: center !important;
+        width: 100% !important;
+        order: 2 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .hero-photo {
+        order: 1 !important;
+        flex: 0 0 auto !important;
+        margin: 0 auto 1rem auto !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+    
+    /* ENHANCED NAME VISIBILITY */
+    .hero-greeting {
+        font-size: 1rem !important;
+        margin-bottom: 0.8rem !important;
+        font-weight: 600 !important;
+        color: #4f46e5 !important;
+        text-align: center !important;
+        display: block !important;
+        visibility: visible !important;
+        position: relative !important;
+        z-index: 2 !important;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem !important;
+        line-height: 1.1 !important;
+        margin: 0 auto 1rem auto !important;
+        font-weight: 800 !important;
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        
+        /* Enhanced visibility */
+        background: linear-gradient(135deg, #1a202c 0%, #2d3748 30%, #4f46e5 70%, #3730a3 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+        
+        /* Ensure proper display */
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 2 !important;
+        
+        /* Fallback for better visibility */
+        filter: drop-shadow(0 1px 2px rgba(79, 70, 229, 0.1));
+    }
+    
+    /* Fallback for browsers that don't support text gradients */
+    @supports not (-webkit-background-clip: text) {
+        .hero h1 {
+            color: #2d3748 !important;
+            text-shadow: 1px 1px 2px rgba(79, 70, 229, 0.2) !important;
         }
+    }
+    
+    .hero .subtitle {
+        font-size: 1rem !important;
+        margin-bottom: 1.2rem !important;
+        text-align: center !important;
+        color: #764ba2 !important;
+        position: relative !important;
+        z-index: 2 !important;
+    }
+    
+    .hero .description {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1.8rem !important;
+        text-align: center !important;
+        max-width: 100% !important;
+        position: relative !important;
+        z-index: 2 !important;
+    }
+    
+    .profile-photo {
+        width: 180px !important;
+        height: 180px !important;
+        margin: 0 auto !important;
+        border: 4px solid #4f46e5 !important;
+        box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3) !important;
+    }
+    
+    .expertise-tags {
+        justify-content: center !important;
+        gap: 0.6rem !important;
+        margin-bottom: 2rem !important;
+        flex-wrap: wrap !important;
+        width: 100% !important;
+        position: relative !important;
+        z-index: 2 !important;
+    }
+    
+    .expertise-tag {
+        padding: 0.4rem 1rem !important;
+        font-size: 0.8rem !important;
+        border-radius: 15px !important;
+        font-weight: 600 !important;
+        white-space: nowrap !important;
+    }
+    
+    .cta-buttons {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 1rem !important;
+        width: 100% !important;
+        position: relative !important;
+        z-index: 2 !important;
+    }
+    
+    .btn {
+        width: 100% !important;
+        max-width: 280px !important;
+        padding: 12px 24px !important;
+        font-size: 0.9rem !important;
+        justify-content: center !important;
+        border-radius: 25px !important;
+    }
+}
 
-        // Update navigation highlighting
-        function updateNavigation(activePageId) {
-            const navLinks = document.querySelectorAll('.nav-links a[data-page], .nav-links a.nav-link');
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                link.style.color = '#2d3748';
-                link.style.background = 'transparent';
-                link.style.borderRadius = '8px';
-                link.style.padding = '8px 16px';
-                link.style.transition = 'all 0.3s ease';
-                
-                const dataPage = link.getAttribute('data-page');
-                const href = link.getAttribute('href');
-                
-                if (dataPage === activePageId || href === `#${activePageId}`) {
-                    link.classList.add('active');
-                    link.style.color = '#4f46e5';
-                    link.style.background = 'rgba(79, 70, 229, 0.1)';
-                    link.style.fontWeight = '600';
-                }
-            });
-        }
+/* =================================
+   FIX 3: CONTACT SECTION - COMPACT & NEAT
+   ================================= */
 
-        // Trigger animations for page content
-        function triggerPageAnimations(pageElement) {
-            // Reset and animate cards
-            const animatedElements = pageElement.querySelectorAll('.skill-category, .project-card, .experience-item, .contact-card, .fade-in');
-            
-            animatedElements.forEach((el, index) => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'all 0.6s ease-out';
-                
-                setTimeout(() => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }, index * 150 + 200);
-            });
-        }
+@media (max-width: 767px) {
+    /* Contact section - Enhanced mobile design */
+    .contact-section {
+        padding: 70px 0 50px 0 !important; /* Reduced padding */
+        background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%) !important;
+        color: white !important;
+        min-height: auto !important;
+    }
+    
+    .contact-section .container {
+        padding: 0 16px !important;
+        max-width: 100% !important;
+    }
+    
+    .contact-section .section-title {
+        font-size: 2rem !important; /* Smaller title */
+        margin-bottom: 1.5rem !important; /* Reduced margin */
+        background: linear-gradient(135deg, #ffffff, #f0f0f0) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+        text-align: center !important;
+    }
+    
+    .contact-section .section-subtitle {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 0.9rem !important; /* Smaller subtitle */
+        margin-bottom: 2rem !important; /* Reduced margin */
+        text-align: center !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Compact contact cards */
+    .contact-info {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important; /* Reduced gap */
+        margin-top: 1.5rem !important;
+        width: 100% !important;
+    }
+    
+    .contact-card {
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(20px) !important;
+        padding: 1.5rem 1rem !important; /* Reduced padding */
+        border-radius: 15px !important; /* Smaller radius */
+        text-align: center !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        transition: all 0.3s ease !important;
+        position: relative !important;
+        overflow: hidden !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+        margin: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .contact-card::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 3px !important;
+        background: linear-gradient(135deg, #4f46e5, #3730a3) !important;
+    }
+    
+    .contact-card:hover {
+        transform: translateY(-3px) !important; /* Reduced hover effect */
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    /* Compact contact icons */
+    .contact-icon {
+        font-size: 2rem !important; /* Smaller icon */
+        margin-bottom: 0.8rem !important; /* Reduced margin */
+        background: linear-gradient(135deg, #4f46e5, #3730a3) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+        display: block !important;
+    }
+    
+    /* Compact contact titles */
+    .contact-title {
+        color: #2d3748 !important;
+        font-size: 1.1rem !important; /* Smaller title */
+        margin-bottom: 0.6rem !important; /* Reduced margin */
+        font-weight: 600 !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* Neat contact details */
+    .contact-details {
+        color: #4a5568 !important;
+        font-size: 0.85rem !important; /* Smaller text */
+        line-height: 1.4 !important;
+        margin: 0 !important;
+    }
+    
+    .contact-link {
+        color: #4f46e5 !important;
+        text-decoration: none !important;
+        transition: color 0.3s ease !important;
+        font-weight: 500 !important;
+        word-break: break-word !important; /* Handle long emails/URLs */
+        display: inline-block !important;
+    }
+    
+    .contact-link:hover {
+        color: #3730a3 !important;
+        text-decoration: underline !important;
+    }
+    
+    /* Specific contact card adjustments */
+    .contact-card:nth-child(1) .contact-details {
+        font-size: 0.9rem !important; /* Slightly larger for phone */
+        font-weight: 600 !important;
+        letter-spacing: 0.5px !important;
+    }
+    
+    .contact-card:nth-child(2) .contact-details {
+        font-size: 0.8rem !important; /* Smaller for email */
+        word-break: break-all !important;
+    }
+    
+    .contact-card:nth-child(3) .contact-details {
+        font-size: 0.85rem !important; /* Medium for location */
+        line-height: 1.3 !important;
+    }
+}
 
-        // Enhanced header effects (removed scroll dependency)
-        function updateHeader() {
-            const header = document.querySelector('header');
-            if (header) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 5px 30px rgba(79, 70, 229, 0.3)';
-                header.style.transition = 'all 0.3s ease';
-            }
-        }
+/* =================================
+   EXTRA SMALL SCREENS - FURTHER OPTIMIZATION
+   ================================= */
 
-        // Particle animation for background (enhanced)
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.style.position = 'fixed';
-            particle.style.width = '4px';
-            particle.style.height = '4px';
-            particle.style.background = `rgba(${Math.random() > 0.5 ? '102, 126, 234' : '79, 70, 229'}, 0.6)`;
-            particle.style.borderRadius = '50%';
-            particle.style.pointerEvents = 'none';
-            particle.style.zIndex = '-1';
-            particle.style.left = Math.random() * window.innerWidth + 'px';
-            particle.style.top = window.innerHeight + 'px';
-            
-            document.body.appendChild(particle);
-            
-            const animationDuration = Math.random() * 3000 + 2000;
-            const animationDelay = Math.random() * 1000;
-            
-            particle.animate([
-                {
-                    transform: 'translateY(0px) rotate(0deg)',
-                    opacity: 0
-                },
-                {
-                    transform: 'translateY(-100px) rotate(180deg)',
-                    opacity: 1
-                },
-                {
-                    transform: `translateY(-${window.innerHeight + 100}px) rotate(360deg)`,
-                    opacity: 0
-                }
-            ], {
-                duration: animationDuration,
-                delay: animationDelay,
-                easing: 'linear'
-            }).onfinish = () => {
-                particle.remove();
-            };
-        }
+@media (max-width: 479px) {
+    /* Hero section ultra-compact */
+    .hero {
+        padding: 80px 0 50px 0 !important;
+    }
+    
+    .hero-content {
+        padding: 0 12px !important;
+        gap: 1.2rem !important;
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+    
+    .hero-greeting {
+        font-size: 0.9rem !important;
+    }
+    
+    .profile-photo {
+        width: 150px !important;
+        height: 150px !important;
+    }
+    
+    /* Contact section ultra-compact */
+    .contact-section {
+        padding: 60px 0 40px 0 !important;
+    }
+    
+    .contact-section .container {
+        padding: 0 12px !important;
+    }
+    
+    .contact-section .section-title {
+        font-size: 1.8rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .contact-section .section-subtitle {
+        font-size: 0.85rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .contact-card {
+        padding: 1.2rem 0.8rem !important;
+        border-radius: 12px !important;
+    }
+    
+    .contact-icon {
+        font-size: 1.8rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+    
+    .contact-title {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .contact-details {
+        font-size: 0.8rem !important;
+    }
+}
 
-        // Create particles periodically
-        setInterval(createParticle, 300);
+/* =================================
+   LANDSCAPE MODE FIXES
+   ================================= */
 
-        // Enhanced typing effect for hero greeting
-        function typeWriter(element, text, speed = 100) {
-            if (!element) return;
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
+@media (max-height: 500px) and (orientation: landscape) and (max-width: 767px) {
+    header {
+        padding: 0.5rem 0 !important;
+        min-height: 60px !important;
+    }
+    
+    .hero {
+        padding: 70px 0 30px 0 !important;
+        min-height: calc(100vh - 60px) !important;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .profile-photo {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    
+    .contact-section {
+        padding: 50px 0 30px 0 !important;
+    }
+    
+    .contact-info {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 0.8rem !important;
+    }
+    
+    .contact-card {
+        flex: 1 1 calc(50% - 0.4rem) !important;
+        min-width: 200px !important;
+    }
+}
 
-        // Page transition effects
-        function addPageTransitionEffects() {
-            const style = document.createElement('style');
-            style.textContent = `
-                .page-transition {
-                    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-                }
-                
-                .fade-enter {
-                    opacity: 0;
-                    transform: translateY(20px);
-                }
-                
-                .fade-enter-active {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-                
-                .slide-enter {
-                    transform: translateX(100%);
-                }
-                
-                .slide-enter-active {
-                    transform: translateX(0);
-                }
-            `;
-            document.head.appendChild(style);
-        }
+/* =================================
+   DEBUGGING UTILITIES (Remove in production)
+   ================================= */
 
-        // Enhanced button hover effects
-        function addButtonEffects() {
-            document.querySelectorAll('.btn, button').forEach(btn => {
-                btn.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-3px) scale(1.05)';
-                    this.style.boxShadow = '0 10px 25px rgba(79, 70, 229, 0.3)';
-                    this.style.transition = 'all 0.3s ease';
-                });
-                
-                btn.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                    this.style.boxShadow = 'none';
-                });
-            });
-        }
-
-        // Project filtering functionality (enhanced for single-page)
-        function initProjectFiltering() {
-            const categoryBtns = document.querySelectorAll('.category-btn');
-            const projectCards = document.querySelectorAll('.project-card');
-
-            categoryBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    
-                    // Update active button with animation
-                    categoryBtns.forEach(b => {
-                        b.classList.remove('active');
-                        b.style.transform = 'scale(1)';
-                    });
-                    this.classList.add('active');
-                    this.style.transform = 'scale(1.05)';
-                    
-                    // Filter projects with staggered animation
-                    projectCards.forEach((card, index) => {
-                        if (category === 'all' || card.getAttribute('data-category') === category) {
-                            card.classList.remove('hidden');
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'translateY(0)';
-                            }, index * 100);
-                        } else {
-                            card.style.opacity = '0';
-                            card.style.transform = 'translateY(20px)';
-                            setTimeout(() => {
-                                card.classList.add('hidden');
-                            }, 300);
-                        }
-                    });
-                });
-            });
-        }
-
-        // Mobile menu toggle
-        function initMobileMenu() {
-            const mobileMenuBtn = document.querySelector('.mobile-nav-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            
-            if (mobileMenuBtn && navLinks) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                    mobileMenuBtn.classList.toggle('active');
-                    
-                    // Update button icon
-                    if (navLinks.classList.contains('active')) {
-                        mobileMenuBtn.innerHTML = '✕';
-                    } else {
-                        mobileMenuBtn.innerHTML = '☰';
-                    }
-                });
-                
-                // Close menu when clicking on a navigation link
-                document.querySelectorAll('.nav-links a[data-page]').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navLinks.classList.remove('active');
-                        mobileMenuBtn.classList.remove('active');
-                        mobileMenuBtn.innerHTML = '☰';
-                    });
-                });
-            }
-        }
-
-        // Browser history management
-        function initHistoryManagement() {
-            // Handle browser back/forward buttons
-            window.addEventListener('popstate', (e) => {
-                const pageId = e.state ? e.state.page : getPageFromURL();
-                showPage(pageId);
-            });
-            
-            // Get page from URL hash
-            function getPageFromURL() {
-                const hash = window.location.hash.substring(1);
-                return hash || 'home';
-            }
-            
-            // Update URL when changing pages
-            function updateURL(pageId) {
-                const newURL = `${window.location.pathname}#${pageId}`;
-                history.pushState({ page: pageId }, '', newURL);
-            }
-            
-            // Override showPage to include history management
-            const originalShowPage = showPage;
-            showPage = function(pageId) {
-                originalShowPage(pageId);
-                updateURL(pageId);
-            };
-            
-            return getPageFromURL;
-        }
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize page system
-            addPageTransitionEffects();
-            addButtonEffects();
-            initProjectFiltering();
-            initMobileMenu();
-            const getPageFromURL = initHistoryManagement();
-            updateHeader();
-            
-            // Show initial page based on URL hash or default to home
-            const initialPage = getPageFromURL();
-            showPage(initialPage);
-            
-            // Initialize typing effect for hero section
-            setTimeout(() => {
-                const greeting = document.querySelector('.hero-greeting');
-                if (greeting) {
-                    typeWriter(greeting, 'Hi There! 👋', 150);
-                }
-            }, 1000);
-            
-            // Initialize all interactive elements
-            setTimeout(() => {
-                const allCards = document.querySelectorAll('.skill-category, .project-card, .experience-item, .contact-card');
-                allCards.forEach(el => {
-                    el.style.transition = 'all 0.6s ease-out';
-                });
-            }, 100);
-        });
-
-        // Utility function for smooth page switching
-        function switchToPage(pageId, animationType = 'fade') {
-            showPage(pageId);
-            
-            // Add specific animation based on type
-            const targetSection = document.querySelector(`#${pageId}`);
-            if (targetSection) {
-                targetSection.classList.add(`${animationType}-enter`);
-                setTimeout(() => {
-                    targetSection.classList.add(`${animationType}-enter-active`);
-                }, 50);
-            }
-        }
-
-        // Export functions for external use
-        window.portfolioNav = {
-            showPage,
-            switchToPage,
-            updateNavigation,
-            currentPage: () => currentPage
-        };
+/* Uncomment to debug layout issues */
+/*
+@media (max-width: 767px) {
+    .hero-content {
+        border: 2px solid red !important;
+    }
+    
+    .hero h1 {
+        border: 2px solid blue !important;
+        background: yellow !important;
+        -webkit-text-fill-color: black !important;
+    }
+    
+    header {
+        border: 2px solid green !important;
+    }
+}
+*/
     </style>
 </head>
 <body>
@@ -3768,4 +3954,3 @@ section[id],
 </script>
 </body>
 </html>
-
