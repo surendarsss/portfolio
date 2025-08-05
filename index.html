@@ -1837,6 +1837,569 @@
             /* .nav-links { display: none; } */
         }
         /* --- MOBILE FRIENDLY CHANGES END --- */
+        /* Mobile navigation toggle */
+.mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #667eea;
+}
+
+/* Active navigation state */
+.nav-links a.active {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 20px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .mobile-nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0;
+    }
+} /* ==========================================================================
+   SINGLE-PAGE NAVIGATION SYSTEM CSS UPDATES
+   Add these styles to your existing CSS or modify existing sections
+   ========================================================================== */
+
+/* =================================
+   CORE PAGE SWITCHING SYSTEM
+   ================================= */
+
+/* Hide all sections by default except home */
+section[id] {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: calc(100vh - 80px); /* Account for header */
+}
+
+/* Show active section */
+section[id].active {
+    display: block !important;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Show home section by default */
+section[id]:first-child,
+section#home {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Alternative way to handle pages if using data-page attributes */
+.page {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+    min-height: calc(100vh - 80px);
+}
+
+.page.active {
+    display: block !important;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =================================
+   ENHANCED NAVIGATION HIGHLIGHTING
+   ================================= */
+
+/* Enhanced nav link styling for single-page system */
+.nav-links a {
+    text-decoration: none;
+    color: #2d3748;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 8px 16px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Active navigation state - enhanced */
+.nav-links a.active,
+.nav-links a[href="#home"].active,
+.nav-links a[href="#about"].active,
+.nav-links a[href="#skills"].active,
+.nav-links a[href="#projects"].active,
+.nav-links a[href="#experience"].active,
+.nav-links a[href="#certifications"].active,
+.nav-links a[href="#contact"].active {
+    color: #4f46e5 !important;
+    background: rgba(79, 70, 229, 0.1) !important;
+    font-weight: 600 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+}
+
+/* Hover effect for non-active links */
+.nav-links a:not(.active):hover {
+    color: #4f46e5;
+    background: rgba(79, 70, 229, 0.05);
+    transform: translateY(-1px);
+}
+
+/* Add subtle animation to nav links */
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #4f46e5, #3730a3);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a.active::before {
+    width: 80%;
+}
+
+/* =================================
+   PAGE TRANSITION EFFECTS
+   ================================= */
+
+/* Fade transition classes */
+.fade-enter {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Slide transition classes */
+.slide-enter {
+    opacity: 0;
+    transform: translateX(50px);
+}
+
+.slide-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Scale transition classes */
+.scale-enter {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.scale-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =================================
+   ENHANCED SECTION STYLING
+   ================================= */
+
+/* Ensure sections have proper spacing and background */
+.section {
+    padding: 100px 0;
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Hero section specific adjustments */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contact section background maintained */
+.contact-section {
+    background: linear-gradient(135deg, #4f46e5 0%, #3730a3 50%, #7c3aed 100%);
+    color: white;
+}
+
+/* =================================
+   MOBILE NAVIGATION ENHANCEMENTS
+   ================================= */
+
+/* Mobile menu button styling */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #4f46e5;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+    background: rgba(79, 70, 229, 0.1);
+    color: #3730a3;
+}
+
+.mobile-menu-btn.active {
+    color: #3730a3;
+    background: rgba(79, 70, 229, 0.1);
+}
+
+/* Enhanced mobile navigation */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        border-radius: 0 0 15px 15px;
+        border-top: 1px solid rgba(79, 70, 229, 0.2);
+        
+        /* Hide by default */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0;
+    }
+
+    .nav-links a {
+        padding: 12px 16px;
+        border-radius: 10px;
+        font-size: 1rem;
+        justify-content: center;
+    }
+
+    .nav-links a.active {
+        background: rgba(79, 70, 229, 0.15) !important;
+        color: #4f46e5 !important;
+    }
+}
+
+/* =================================
+   ENHANCED CONTENT ANIMATIONS
+   ================================= */
+
+/* Staggered animation classes for content */
+.stagger-animation {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stagger-animation.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Enhanced card hover effects */
+.skill-category,
+.project-card,
+.experience-item,
+.contact-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-category:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2);
+}
+
+.project-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(79, 70, 229, 0.25);
+}
+
+.contact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* =================================
+   PROJECT FILTERING ENHANCEMENTS
+   ================================= */
+
+/* Enhanced category button animations */
+.category-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.category-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.category-btn:hover::before,
+.category-btn.active::before {
+    left: 100%;
+}
+
+.category-btn.active {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+}
+
+/* Enhanced project card filtering */
+.project-card.hidden {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:not(.hidden) {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =================================
+   LOADING AND PERFORMANCE
+   ================================= */
+
+/* Loading state for sections */
+.section-loading {
+    opacity: 0.5;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.section-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(79, 70, 229, 0.3);
+    border-top: 3px solid #4f46e5;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* =================================
+   ACCESSIBILITY IMPROVEMENTS
+   ================================= */
+
+/* Focus states for keyboard navigation */
+.nav-links a:focus,
+.category-btn:focus,
+.btn:focus {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2);
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    section[id],
+    .page,
+    .nav-links a,
+    .category-btn,
+    .skill-category,
+    .project-card,
+    .experience-item,
+    .contact-card {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .floating-shapes,
+    .shape {
+        display: none !important;
+    }
+}
+
+/* =================================
+   SCROLL BEHAVIOR OVERRIDE
+   ================================= */
+
+/* Disable smooth scrolling since we're using page switching */
+html {
+    scroll-behavior: auto !important;
+}
+
+/* Hide scrollbar during transitions */
+body.transitioning {
+    overflow: hidden;
+}
+
+/* =================================
+   UTILITY CLASSES FOR PAGE SYSTEM
+   ================================= */
+
+/* Page wrapper utilities */
+.page-wrapper {
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    position: relative;
+}
+
+/* Content container for consistent spacing */
+.page-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Section spacing utilities */
+.section-spacing-top {
+    padding-top: 120px;
+}
+
+.section-spacing-bottom {
+    padding-bottom: 80px;
+}
+
+/* =================================
+   ENHANCED MOBILE RESPONSIVENESS
+   ================================= */
+
+@media (max-width: 767px) {
+    /* Ensure sections work properly on mobile */
+    section[id],
+    .page {
+        min-height: calc(100vh - 70px);
+        padding: 20px 0;
+    }
+    
+    .section {
+        padding: 60px 0;
+        min-height: auto;
+    }
+    
+    .hero {
+        min-height: calc(100vh - 70px);
+        padding: 40px 0;
+    }
+    
+    /* Mobile navigation adjustments */
+    .nav-links {
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+    }
+    
+    /* Disable complex animations on mobile */
+    .skill-category:hover,
+    .project-card:hover,
+    .contact-card:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* =================================
+   PERFORMANCE OPTIMIZATIONS
+   ================================= */
+
+/* GPU acceleration for smooth transitions */
+section[id],
+.page,
+.nav-links a,
+.project-card,
+.skill-category {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Optimize repaints */
+.nav-links a::before,
+.category-btn::before,
+.btn::before {
+    transform: translateZ(0);
+}
+
+/* =================================
+   DARK MODE COMPATIBILITY (OPTIONAL)
+   ================================= */
+
+@media (prefers-color-scheme: dark) {
+    section[id],
+    .page {
+        background-color: #1a202c;
+        color: #e2e8f0;
+    }
+    
+    .nav-links a {
+        color: #e2e8f0;
+    }
+    
+    .nav-links a.active {
+        color: #667eea !important;
+        background: rgba(102, 126, 234, 0.2) !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -1848,21 +2411,22 @@
         </div>
     </div>
 
-    <header>
-        <nav class="container">
-            <div class="logo">SS</div>
-            <ul class="nav-links">
-                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
-                <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
-                <li><a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li><a href="assets/Surendar_S_Resume.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Resume</a></li>
-            </ul>
-        </nav>
-    </header>
-
+   
+<header>
+    <nav class="container">
+        <div class="logo">SS</div>
+        <button class="mobile-nav-toggle">☰</button>
+        <ul class="nav-links">
+            <li><a href="#" data-page="home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#" data-page="skills" class="nav-link"><i class="fas fa-code"></i> Skills</a></li>
+            <li><a href="#" data-page="projects" class="nav-link"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="#" data-page="experience" class="nav-link"><i class="fas fa-briefcase"></i> Experience</a></li>
+            <li><a href="#" data-page="certifications" class="nav-link"><i class="fas fa-certificate"></i> Certifications</a></li>
+            <li><a href="#" data-page="contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="assets/Surendar_S_Resume.pdf" target="_blank" class="resume-link"><i class="fas fa-file-pdf"></i> Resume</a></li>
+        </ul>
+    </nav>
+</header>
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
@@ -2494,73 +3058,115 @@
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Single-page navigation system
+        let currentPage = 'home'; // Default page
+
+        // Page switching functionality for data-page attributes
+        document.querySelectorAll('a[data-page]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                const targetPage = this.getAttribute('data-page');
+                showPage(targetPage);
             });
         });
 
-        // Enhanced header scroll effect
-        window.addEventListener('scroll', () => {
+        // Also handle traditional href="#page" links (for CTA buttons)
+        document.querySelectorAll('a[href^="#"]:not([data-page])').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetPage = this.getAttribute('href').substring(1);
+                showPage(targetPage);
+            });
+        });
+
+        function showPage(pageId) {
+            // Hide all sections/pages
+            document.querySelectorAll('section[id], .page').forEach(section => {
+                section.style.display = 'none';
+                section.classList.remove('active');
+            });
+            
+            // Show target page with fade-in animation
+            const targetSection = document.querySelector(`#${pageId}`) || document.querySelector(`[data-page="${pageId}"]`);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+                targetSection.style.opacity = '0';
+                targetSection.style.transform = 'translateY(20px)';
+                
+                // Trigger animation
+                setTimeout(() => {
+                    targetSection.style.transition = 'all 0.5s ease-out';
+                    targetSection.style.opacity = '1';
+                    targetSection.style.transform = 'translateY(0)';
+                    targetSection.classList.add('active');
+                }, 50);
+                
+                currentPage = pageId;
+                updateNavigation(pageId);
+                
+                // Trigger page-specific animations
+                triggerPageAnimations(targetSection);
+            }
+        }
+
+        // Update navigation highlighting
+        function updateNavigation(activePageId) {
+            const navLinks = document.querySelectorAll('.nav-links a[data-page], .nav-links a.nav-link');
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                link.style.color = '#2d3748';
+                link.style.background = 'transparent';
+                link.style.borderRadius = '8px';
+                link.style.padding = '8px 16px';
+                link.style.transition = 'all 0.3s ease';
+                
+                const dataPage = link.getAttribute('data-page');
+                const href = link.getAttribute('href');
+                
+                if (dataPage === activePageId || href === `#${activePageId}`) {
+                    link.classList.add('active');
+                    link.style.color = '#4f46e5';
+                    link.style.background = 'rgba(79, 70, 229, 0.1)';
+                    link.style.fontWeight = '600';
+                }
+            });
+        }
+
+        // Trigger animations for page content
+        function triggerPageAnimations(pageElement) {
+            // Reset and animate cards
+            const animatedElements = pageElement.querySelectorAll('.skill-category, .project-card, .experience-item, .contact-card, .fade-in');
+            
+            animatedElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+                
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 150 + 200);
+            });
+        }
+
+        // Enhanced header effects (removed scroll dependency)
+        function updateHeader() {
             const header = document.querySelector('header');
-            if (window.scrollY > 100) {
+            if (header) {
                 header.style.background = 'rgba(255, 255, 255, 0.98)';
                 header.style.boxShadow = '0 5px 30px rgba(79, 70, 229, 0.3)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                header.style.transition = 'all 0.3s ease';
             }
-        });
+        }
 
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Add staggered animation for child elements
-                    const children = entry.target.querySelectorAll('.skill-category, .project-card, .experience-item, .contact-card');
-                    children.forEach((child, index) => {
-                        setTimeout(() => {
-                            child.style.opacity = '1';
-                            child.style.transform = 'translateY(0)';
-                        }, index * 150);
-                    });
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Initialize all cards with fade-in state
-        document.querySelectorAll('.skill-category, .project-card, .experience-item, .contact-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease-out';
-        });
-
-        // Particle animation for background
+        // Particle animation for background (enhanced)
         function createParticle() {
             const particle = document.createElement('div');
             particle.style.position = 'fixed';
             particle.style.width = '4px';
             particle.style.height = '4px';
-            particle.style.background = 'rgba(102, 126, 234, 0.6)';
+            particle.style.background = `rgba(${Math.random() > 0.5 ? '102, 126, 234' : '79, 70, 229'}, 0.6)`;
             particle.style.borderRadius = '50%';
             particle.style.pointerEvents = 'none';
             particle.style.zIndex = '-1';
@@ -2599,6 +3205,7 @@
 
         // Enhanced typing effect for hero greeting
         function typeWriter(element, text, speed = 100) {
+            if (!element) return;
             let i = 0;
             element.innerHTML = '';
             function type() {
@@ -2611,50 +3218,53 @@
             type();
         }
 
-        // Initialize typing effect after page load
-        window.addEventListener('load', () => {
-            const greeting = document.querySelector('.hero-greeting');
-            setTimeout(() => {
-                typeWriter(greeting, 'Hi There! 👋', 150);
-            }, 1000);
-        });
-
-        // Add hover effects for buttons
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-3px) scale(1.05)';
-            });
-            
-            btn.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Dynamic nav link highlighting
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 150;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
+        // Page transition effects
+        function addPageTransitionEffects() {
+            const style = document.createElement('style');
+            style.textContent = `
+                .page-transition {
+                    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
                 }
-            });
-            
-            navLinks.forEach(link => {
-                link.style.color = '#2d3748';
-                link.style.background = 'transparent';
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.style.color = '#4f46e5';
-                    link.style.background = 'rgba(79, 70, 229, 0.1)';
+                
+                .fade-enter {
+                    opacity: 0;
+                    transform: translateY(20px);
                 }
-            });
-        });
+                
+                .fade-enter-active {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                
+                .slide-enter {
+                    transform: translateX(100%);
+                }
+                
+                .slide-enter-active {
+                    transform: translateX(0);
+                }
+            `;
+            document.head.appendChild(style);
+        }
 
-        // Project filtering functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        // Enhanced button hover effects
+        function addButtonEffects() {
+            document.querySelectorAll('.btn, button').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.05)';
+                    this.style.boxShadow = '0 10px 25px rgba(79, 70, 229, 0.3)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        }
+
+        // Project filtering functionality (enhanced for single-page)
+        function initProjectFiltering() {
             const categoryBtns = document.querySelectorAll('.category-btn');
             const projectCards = document.querySelectorAll('.project-card');
 
@@ -2662,21 +3272,145 @@
                 btn.addEventListener('click', function() {
                     const category = this.getAttribute('data-category');
                     
-                    // Update active button
-                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    // Update active button with animation
+                    categoryBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.style.transform = 'scale(1)';
+                    });
                     this.classList.add('active');
+                    this.style.transform = 'scale(1.05)';
                     
-                    // Filter projects
-                    projectCards.forEach(card => {
+                    // Filter projects with staggered animation
+                    projectCards.forEach((card, index) => {
                         if (category === 'all' || card.getAttribute('data-category') === category) {
                             card.classList.remove('hidden');
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, index * 100);
                         } else {
-                            card.classList.add('hidden');
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.classList.add('hidden');
+                            }, 300);
                         }
                     });
                 });
             });
+        }
+
+        // Mobile menu toggle
+        function initMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    mobileMenuBtn.classList.toggle('active');
+                    
+                    // Update button icon
+                    if (navLinks.classList.contains('active')) {
+                        mobileMenuBtn.innerHTML = '✕';
+                    } else {
+                        mobileMenuBtn.innerHTML = '☰';
+                    }
+                });
+                
+                // Close menu when clicking on a navigation link
+                document.querySelectorAll('.nav-links a[data-page]').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '☰';
+                    });
+                });
+            }
+        }
+
+        // Browser history management
+        function initHistoryManagement() {
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', (e) => {
+                const pageId = e.state ? e.state.page : getPageFromURL();
+                showPage(pageId);
+            });
+            
+            // Get page from URL hash
+            function getPageFromURL() {
+                const hash = window.location.hash.substring(1);
+                return hash || 'home';
+            }
+            
+            // Update URL when changing pages
+            function updateURL(pageId) {
+                const newURL = `${window.location.pathname}#${pageId}`;
+                history.pushState({ page: pageId }, '', newURL);
+            }
+            
+            // Override showPage to include history management
+            const originalShowPage = showPage;
+            showPage = function(pageId) {
+                originalShowPage(pageId);
+                updateURL(pageId);
+            };
+            
+            return getPageFromURL;
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize page system
+            addPageTransitionEffects();
+            addButtonEffects();
+            initProjectFiltering();
+            initMobileMenu();
+            const getPageFromURL = initHistoryManagement();
+            updateHeader();
+            
+            // Show initial page based on URL hash or default to home
+            const initialPage = getPageFromURL();
+            showPage(initialPage);
+            
+            // Initialize typing effect for hero section
+            setTimeout(() => {
+                const greeting = document.querySelector('.hero-greeting');
+                if (greeting) {
+                    typeWriter(greeting, 'Hi There! 👋', 150);
+                }
+            }, 1000);
+            
+            // Initialize all interactive elements
+            setTimeout(() => {
+                const allCards = document.querySelectorAll('.skill-category, .project-card, .experience-item, .contact-card');
+                allCards.forEach(el => {
+                    el.style.transition = 'all 0.6s ease-out';
+                });
+            }, 100);
         });
-    </script>
+
+        // Utility function for smooth page switching
+        function switchToPage(pageId, animationType = 'fade') {
+            showPage(pageId);
+            
+            // Add specific animation based on type
+            const targetSection = document.querySelector(`#${pageId}`);
+            if (targetSection) {
+                targetSection.classList.add(`${animationType}-enter`);
+                setTimeout(() => {
+                    targetSection.classList.add(`${animationType}-enter-active`);
+                }, 50);
+            }
+        }
+
+        // Export functions for external use
+        window.portfolioNav = {
+            showPage,
+            switchToPage,
+            updateNavigation,
+            currentPage: () => currentPage
+        };
+</script>
 </body>
 </html>
